@@ -1,0 +1,122 @@
+.caching {
+    border-radius: var(--radius-xl);
+    background: var(--bg-white);
+    box-shadow: var(--shadow-lg);
+    margin-bottom: var(--spacing-md);
+}
+
+.caching-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-lg);
+    border-bottom: 1px solid var(--bg-color);
+}
+
+.caching-tabs-wrapper {
+    display: flex;
+    gap: var(--spacing-md);
+    flex: 1;
+    min-width: 0;
+    padding: var(--spacing-sm) var(--spacing-xl);
+}
+
+.caching-tabs {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    max-width: 100%;
+}
+
+.cache-tab {
+    padding: 8px 10px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-color);
+    background: var(--bg-white);
+    color: var(--color-primary);
+    cursor: pointer;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.cache-tab.active {
+    background: var(--color-primary);
+    color: var(--text-white);
+    border-color: var(--color-primary);
+}
+
+.cache-more {
+    position: relative;
+}
+
+.cache-more-btn {
+    background: var(--bg-white);
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.cache-panel {
+    display: none;
+}
+
+.cache-panel.active {
+    display: block;
+}
+
+.cache-stats-row {
+    display: flex;
+    gap: var(--spacing-2xl);
+    overflow-x: auto;
+    background: var(--bg-light);
+    padding: var(--spacing-sm) var(--spacing-xl);
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.cache-stat-title {
+    font-size: 14px;
+}
+
+.cache-stat-value {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.cache-stat-title,
+.cache-stat-value {
+    white-space: nowrap;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    border-radius: 50%;
+    margin-right: 6px;
+}
+
+.dot-blue {
+    background: var(--color-blue);
+}
+
+.dot-lightblue {
+    background: var(--color-lightblue);
+}
+
+.cache-chart-box {
+    height: 300px;
+    padding: var(--spacing-xl) var(--spacing-xs) var(--spacing-xs);
+}
+
+.cache-empty {
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
