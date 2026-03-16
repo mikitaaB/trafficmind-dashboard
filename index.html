@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRAFFICmind Dashboard</title>
+    <link rel="stylesheet" href="css/base/_reset.css">
+    <link rel="stylesheet" href="css/base/_variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/utils/_responsive.css">
+    <script src="lib/chart.umd.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="left-header">
+            <a href="index.html">
+                <img src="images/logo.svg" alt="trafficmind logo" loading="lazy" id="logoBtn">
+            </a>
+
+            <div class="profile-wrapper">
+                <img src="images/profile.svg" alt="profile logo" loading="lazy" id="profileBtn">
+
+                <div class="profile-menu" id="profileMenu">
+                    <p>Profile</p>
+                    <p>Settings</p>
+                    <p>Logout</p>
+                </div>
+            </div>
+        </div>
+        <div class="right-header">
+            <span>STATISTICS</span>
+
+            <button class="menu-btn" id="menuBtn">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </button>
+
+            <div class="menu-dropdown" id="menuDropdown">
+                <p>Dashboard</p>
+                <p>Analytics</p>
+                <p>Reports</p>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="traffic-stats">
+            <div class="stat-card">
+                <div class="stat-header">
+                    <p class="stat-title">Requests</p>
+                    <p class="stat-value">4.21M</p>
+                </div>
+
+                <div class="chart-wrapper">
+                    <canvas id="requestsChart"></canvas>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <p class="stat-title">Data transfer</p>
+                    <p class="stat-value">550.69 GB</p>
+                </div>
+
+                <div class="chart-wrapper">
+                    <canvas id="transferChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section class="dashboard">
+            <div class="info-box">
+                <img src="images/storage.svg" alt="storage" loading="lazy">
+                <div class="info-data-box">
+                    <p class="info-bold-text">2 Storages</p>
+                    <p class="info-text">Total deleted storage: <span>0</span></p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <img src="images/files.svg" alt="files" loading="lazy">
+                <div class="info-data-box">
+                    <p class="info-bold-text">3 Total Files</p>
+                    <p class="info-text">Total deleted files: <span>25.25 KB</span></p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <img src="images/file_cloud.svg" alt="files cloud" loading="lazy">
+                <div class="info-data-box">
+                    <p class="info-bold-text">25.49 KB Files Size</p>
+                    <p class="info-text">25.49 KB last month</p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <img src="images/refresh.svg" alt="refresh" loading="lazy">
+                <div class="info-data-box">
+                    <p class="info-bold-text">0 Refresh Required</p>
+                    <p class="info-text-success">All synced</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="caching">
+            <div class="caching-top">
+                <div class="caching-tabs-wrapper">
+                    <div class="caching-tabs" id="cacheTabs">
+                        <button class="cache-tab active" data-tab="served">Served by</button>
+                        <button class="cache-tab" data-tab="cache-status">Cache status</button>
+                        <button class="cache-tab" data-tab="country">Country</button>
+                        <button class="cache-tab" data-tab="host">Host</button>
+                    </div>
+
+                    <div class="cache-more">
+                        <button class="cache-more-btn" id="cacheMoreBtn">···</button>
+                        <div class="cache-more-menu" id="cacheMoreMenu">
+                            <p data-tab="status-code">Status Code</p>
+                            <p data-tab="device">Device</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cache-panel" id="cachePanel"></div>
+        </section>
+    </main>
+    <script src="js/configs.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
