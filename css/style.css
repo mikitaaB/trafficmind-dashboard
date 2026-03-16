@@ -13,17 +13,17 @@ main {
     padding-inline: var(--spacing-md);
 }
 
-main>section:first-of-type {
+main > section:first-of-type {
     margin-top: var(--spacing-md);
 }
 
-.left-header {
+.header {
     display: flex;
     align-items: center;
     gap: var(--spacing-xl);
 }
 
-.right-header {
+.header-menu {
     display: flex;
     align-items: center;
     gap: var(--spacing-15);
@@ -42,23 +42,22 @@ main>section:first-of-type {
     cursor: pointer;
 }
 
-.menu-btn .line {
+.menu-btn__line {
     width: 100%;
     height: 3px;
     background: var(--text-muted);
     border-radius: var(--radius-sm);
-    transition: transform var(--transition-fast), opacity var(--transition-fast);
 }
 
-.menu-btn.active .line:nth-child(1) {
+.menu-btn.active .menu-btn__line:nth-child(1) {
     transform: translateY(10px) rotate(45deg);
 }
 
-.menu-btn.active .line:nth-child(2) {
+.menu-btn.active .menu-btn__line:nth-child(2) {
     opacity: 0;
 }
 
-.menu-btn.active .line:nth-child(3) {
+.menu-btn.active .menu-btn__line:nth-child(3) {
     transform: translateY(-10px) rotate(-45deg);
 }
 
@@ -89,23 +88,23 @@ main>section:first-of-type {
     z-index: 20;
 }
 
-.dropdown--compact .menu-item {
+.dropdown--compact .dropdown__item {
     padding: var(--spacing-md) var(--spacing-xl);
     font-size: 14px;
 }
 
-.dropdown--compact .menu-item.active {
+.dropdown--compact .dropdown__item.active {
     background: var(--color-primary);
     color: var(--text-white);
 }
 
-.dropdown--compact .menu-item:hover,
-.dropdown--compact .menu-item:focus-visible {
+.dropdown--compact .dropdown__item:hover,
+.dropdown--compact .dropdown__item:focus-visible {
     background: var(--bg-light);
     color: var(--text-color);
 }
 
-.menu-item {
+.dropdown__item {
     display: block;
     margin: 0;
     padding: var(--spacing-sm) 0;
@@ -121,8 +120,8 @@ main>section:first-of-type {
     width: 100%;
 }
 
-.menu-item:hover,
-.menu-item:focus-visible {
+.dropdown__item:hover,
+.dropdown__item:focus-visible {
     color: var(--color-primary);
 }
 
@@ -142,8 +141,7 @@ main>section:first-of-type {
     border-radius: var(--radius-sm);
 }
 
-.menu-btn:focus-visible,
-.cache-more-btn:focus-visible {
+.menu-btn:focus-visible {
     outline: 2px solid var(--color-primary);
     outline-offset: 3px;
     border-radius: var(--radius-sm);

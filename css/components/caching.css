@@ -5,7 +5,7 @@
     margin-bottom: var(--spacing-md);
 }
 
-.caching-top {
+.caching__top {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -14,7 +14,7 @@
     border-bottom: 1px solid var(--bg-color);
 }
 
-.caching-tabs-wrapper {
+.caching__tabs-wrapper {
     display: flex;
     gap: var(--spacing-md);
     flex: 1;
@@ -22,7 +22,7 @@
     padding: var(--spacing-sm) var(--spacing-xl);
 }
 
-.caching-tabs {
+.caching__tabs {
     display: flex;
     gap: 6px;
     overflow-x: auto;
@@ -30,7 +30,7 @@
     max-width: 100%;
 }
 
-.cache-tab {
+.caching__tab {
     padding: 8px 10px;
     border-radius: var(--radius-sm);
     border: 1px solid var(--border-color);
@@ -41,17 +41,17 @@
     white-space: nowrap;
 }
 
-.cache-tab.active {
+.caching__tab.active {
     background: var(--color-primary);
     color: var(--text-white);
     border-color: var(--color-primary);
 }
 
-.cache-more {
+.caching__more {
     position: relative;
 }
 
-.cache-more-btn {
+.caching__more-btn {
     background: var(--bg-white);
     border: none;
     padding: var(--spacing-sm) var(--spacing-md);
@@ -60,15 +60,15 @@
     font-size: 13px;
 }
 
-.cache-panel {
+.caching__panel {
     display: none;
 }
 
-.cache-panel.active {
+.caching__panel.active {
     display: block;
 }
 
-.cache-stats-row {
+.caching__stats-row {
     display: flex;
     gap: var(--spacing-2xl);
     overflow-x: auto;
@@ -78,17 +78,17 @@
     flex-wrap: nowrap;
 }
 
-.cache-stat-title {
+.caching__stat-title {
     font-size: 14px;
 }
 
-.cache-stat-value {
+.caching__stat-value {
     font-size: 16px;
     font-weight: 500;
 }
 
-.cache-stat-title,
-.cache-stat-value {
+.caching__stat-title,
+.caching__stat-value {
     white-space: nowrap;
 }
 
@@ -100,15 +100,15 @@
     margin-right: 6px;
 }
 
-.dot-blue {
+.dot--blue {
     background: var(--color-blue);
 }
 
-.dot-lightblue {
+.dot--lightblue {
     background: var(--color-lightblue);
 }
 
-.cache-chart-box {
+.caching__chart-box {
     height: 300px;
     width: 100%;
     padding: var(--spacing-xl) var(--spacing-xl);
@@ -117,12 +117,4 @@
 canvas {
   width: 100%;
   height: 100%;
-}
-
-.cache-empty {
-    height: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
 }

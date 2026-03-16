@@ -29,7 +29,7 @@
     --color-primary: #2c7be5;
     --color-blue: #0040e3;
     --color-lightblue: #2d76fb;
-    --color-success: rgb(100, 206, 130);
+    --color-success: #64CE82;
 
     --bg-color: #eff0f3;
     --bg-white: #fff;
@@ -61,6 +61,4 @@
     --radius-sm: 4px;
     --radius-xl: 8px;
     --radius-2xl: 14px;
-
-    --transition-fast: 0.25s ease;
 }

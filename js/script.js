@@ -62,20 +62,23 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-menuDropdown.querySelectorAll(".menu-item").forEach((item) => {
+menuDropdown.querySelectorAll(".dropdown__item").forEach((item) => {
     item.addEventListener("click", () => {
         closeMenu(menuBtn, menuDropdown, { deactivateTrigger: true, focusTrigger: true });
     });
 });
 
-profileMenu.querySelectorAll(".menu-item").forEach((item) => {
+profileMenu.querySelectorAll(".dropdown__item").forEach((item) => {
     item.addEventListener("click", () => {
         closeMenu(profileBtn, profileMenu, { focusTrigger: true });
     });
 });
 
-const cacheTabs = document.querySelectorAll(".cache-tab");
+const cacheTabs = document.querySelectorAll(".caching__tab");
 const cachePanel = document.getElementById("cachePanel");
+const cacheTotalValueEl = document.getElementById("cacheTotalValue");
+const cacheOriginValueEl = document.getElementById("cacheOriginValue");
+const cacheTmValueEl = document.getElementById("cacheTmValue");
 
 const cacheTabsData = CONFIG.cacheData;
 
@@ -115,44 +118,22 @@ function activateCacheTab(name) {
 }
 
 function renderCachePanel(name) {
-    cachePanel.innerHTML = "";
     cachePanel.classList.add("active");
 
     const data = cacheTabsData[name];
 
-    if (!data) {
-        cachePanel.innerHTML = `<div class="cache-empty">No data</div>`;
-        return;
-    }
+    const total = data?.total ?? "0";
+    const origin = data?.origin ?? "0";
+    const tm = data?.tm ?? "0";
 
-    cachePanel.innerHTML = `
-        <div class="cache-stats-row">
-            <div class="cache-stat">
-                <p class="cache-stat-title">Total</p>
-                <p class="cache-stat-value">${data.total}</p>
-            </div>
+    if (cacheTotalValueEl) cacheTotalValueEl.textContent = total;
+    if (cacheOriginValueEl) cacheOriginValueEl.textContent = origin;
+    if (cacheTmValueEl) cacheTmValueEl.textContent = tm;
 
-            <div class="cache-stat">
-                <p class="cache-stat-title">
-                <span class="dot dot-lightblue"></span> Served by origin
-                </p>
-                <p class="cache-stat-value">${data.origin}</p>
-            </div>
+    const originChart = data?.originChart ?? [];
+    const tmChart = data?.tmChart ?? [];
 
-            <div class="cache-stat">
-                <p class="cache-stat-title">
-                <span class="dot dot-blue"></span> Served by Trafficmind
-                </p>
-                <p class="cache-stat-value">${data.tm}</p>
-            </div>
-        </div>
-
-        <div class="cache-chart-box">
-            <canvas id="cachingChart"></canvas>
-        </div>
-    `;
-
-    renderCachingChart(data.originChart, data.tmChart);
+    renderCachingChart(originChart, tmChart);
 }
 
 renderTrafficCharts();
@@ -160,6 +141,6 @@ renderCachePanel("served");
 
 window.addEventListener("resize", () => {
     renderTrafficCharts();
-    const activeTab = document.querySelector(".cache-tab.active")?.dataset.tab || "served";
+    const activeTab = document.querySelector(".caching__tab.active")?.dataset.tab || "served";
     renderCachePanel(activeTab);
 });

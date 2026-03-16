@@ -6,7 +6,11 @@ function setupCanvas(canvas) {
     canvas.height = rect.height * dpr;
     const ctx = canvas.getContext("2d");
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    return { ctx, width: rect.width, height: rect.height };
+    return {
+        ctx,
+        width: rect.width,
+        height: rect.height
+    };
 }
 
 function drawMiniAreaChart(canvas, data, options) {
@@ -37,8 +41,8 @@ function drawMiniAreaChart(canvas, data, options) {
     ctx.closePath();
 
     const gradient = ctx.createLinearGradient(0, padding, 0, height - padding);
-    gradient.addColorStop(0, options.fillColor || "rgba(0,0,0,0.06)");
-    gradient.addColorStop(1, "rgba(0,0,0,0)");
+    gradient.addColorStop(0, options.fillColor || "#0000000F");
+    gradient.addColorStop(1, "#00000000");
 
     ctx.fillStyle = gradient;
     ctx.fill();
@@ -53,11 +57,23 @@ function drawMiniAreaChart(canvas, data, options) {
     ctx.stroke();
 }
 
+function drawNoData({ctx, width, height}) {
+    ctx.clearRect(0, 0, width, height);
+    ctx.fillStyle = "#333";
+    ctx.font = "20px 'Roboto', system-ui, sans-serif";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText("No data", width / 2, height / 2);
+}
+
 function drawCachingChart(canvas, originData, tmData) {
     const setup = setupCanvas(canvas);
-    if (!setup || !originData?.length || !tmData?.length) return;
-    const { ctx, width, height } = setup;
+    if (!setup || (!originData?.length && !tmData?.length)) {
+        drawNoData(setup);
+        return;
+    }
 
+    const { ctx, width, height } = setup;
     ctx.clearRect(0, 0, width, height);
 
     const paddingLeft = 35;
@@ -65,7 +81,7 @@ function drawCachingChart(canvas, originData, tmData) {
     const paddingTop = 10;
     const paddingBottom = 36;
 
-    const allY = [...originData, ...tmData].map(p => p.y);
+    const allY = originData.concat(tmData).map(p => p.y);
     const maxY = Math.max(...allY);
     const minY = 0;
     const rangeY = maxY - minY || 1;
@@ -81,7 +97,7 @@ function drawCachingChart(canvas, originData, tmData) {
     }
 
     const gridLines = 4;
-    ctx.strokeStyle = "rgba(0,0,0,0.08)";
+    ctx.strokeStyle = "#00000014";
     ctx.lineWidth = 1;
     for (let i = 0; i <= gridLines; i++) {
         const t = i / gridLines;

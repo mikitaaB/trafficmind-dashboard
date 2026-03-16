@@ -16,9 +16,9 @@
 
 <body>
     <header>
-        <div class="left-header">
+        <div class="header">
             <a href="index.html">
-                <img src="images/logo.svg" alt="trafficmind logo" loading="lazy" id="logoBtn">
+                <img src="images/logo.svg" alt="trafficmind logo" loading="lazy" class="logo-btn">
             </a>
 
             <div class="profile-wrapper">
@@ -29,114 +29,139 @@
                 </button>
 
                 <div class="profile-menu dropdown dropdown--panel" id="profileMenu" role="menu" aria-label="Profile menu">
-                    <button class="menu-item" type="button" role="menuitem">Profile</button>
-                    <button class="menu-item" type="button" role="menuitem">Settings</button>
-                    <button class="menu-item" type="button" role="menuitem">Logout</button>
+                    <button class="dropdown__item" type="button" role="menuitem">Profile</button>
+                    <button class="dropdown__item" type="button" role="menuitem">Settings</button>
+                    <button class="dropdown__item" type="button" role="menuitem">Logout</button>
                 </div>
             </div>
         </div>
-        <div class="right-header">
+        <div class="header-menu">
             <span>STATISTICS</span>
 
             <button class="menu-btn" id="menuBtn" type="button" aria-haspopup="menu" aria-expanded="false"
                 aria-controls="menuDropdown" aria-label="Open main menu" data-label-open="Open main menu"
                 data-label-close="Close main menu">
-                <span class="line"></span>
-                <span class="line"></span>
-                <span class="line"></span>
+                <span class="menu-btn__line"></span>
+                <span class="menu-btn__line"></span>
+                <span class="menu-btn__line"></span>
             </button>
 
             <div class="menu-dropdown dropdown dropdown--panel" id="menuDropdown" role="menu" aria-label="Main menu">
-                <button class="menu-item" type="button" role="menuitem">Dashboard</button>
-                <button class="menu-item" type="button" role="menuitem">Analytics</button>
-                <button class="menu-item" type="button" role="menuitem">Reports</button>
+                <button class="dropdown__item" type="button" role="menuitem">Dashboard</button>
+                <button class="dropdown__item" type="button" role="menuitem">Analytics</button>
+                <button class="dropdown__item" type="button" role="menuitem">Reports</button>
             </div>
         </div>
     </header>
 
     <main>
         <section class="traffic-stats">
-            <div class="stat-card">
-                <div class="stat-header">
-                    <p class="stat-title">Requests</p>
-                    <p class="stat-value">4.21M</p>
+            <div class="traffic-stats__card">
+                <div class="traffic-stats__header">
+                    <p class="traffic-stats__title">Requests</p>
+                    <p class="traffic-stats__value">4.21M</p>
                 </div>
 
-                <div class="chart-wrapper">
+                <div class="traffic-stats__chart">
                     <canvas id="requestsChart"></canvas>
                 </div>
             </div>
 
-            <div class="stat-card">
-                <div class="stat-header">
-                    <p class="stat-title">Data transfer</p>
-                    <p class="stat-value">550.69 GB</p>
+            <div class="traffic-stats__card">
+                <div class="traffic-stats__header">
+                    <p class="traffic-stats__title">Data transfer</p>
+                    <p class="traffic-stats__value">550.69 GB</p>
                 </div>
 
-                <div class="chart-wrapper">
+                <div class="traffic-stats__chart">
                     <canvas id="transferChart"></canvas>
                 </div>
             </div>
         </section>
 
         <section class="dashboard">
-            <div class="info-box">
+            <div class="dashboard__info-box">
                 <img src="images/storage.svg" alt="storage" loading="lazy">
-                <div class="info-data-box">
-                    <p class="info-bold-text">2 Storages</p>
-                    <p class="info-text">Total deleted storage: <span>0</span></p>
+                <div class="dashboard__info">
+                    <p class="dashboard__info-title">2 Storages</p>
+                    <p class="dashboard__info-text">Total deleted storage: <span>0</span></p>
                 </div>
             </div>
 
-            <div class="info-box">
+            <div class="dashboard__info-box">
                 <img src="images/files.svg" alt="files" loading="lazy">
-                <div class="info-data-box">
-                    <p class="info-bold-text">3 Total Files</p>
-                    <p class="info-text">Total deleted files: <span>25.25 KB</span></p>
+                <div class="dashboard__info">
+                    <p class="dashboard__info-title">3 Total Files</p>
+                    <p class="dashboard__info-text">Total deleted files: <span>25.25 KB</span></p>
                 </div>
             </div>
 
-            <div class="info-box">
+            <div class="dashboard__info-box">
                 <img src="images/file_cloud.svg" alt="files cloud" loading="lazy">
-                <div class="info-data-box">
-                    <p class="info-bold-text">25.49 KB Files Size</p>
-                    <p class="info-text">25.49 KB last month</p>
+                <div class="dashboard__info">
+                    <p class="dashboard__info-title">25.49 KB Files Size</p>
+                    <p class="dashboard__info-text">25.49 KB last month</p>
                 </div>
             </div>
 
-            <div class="info-box">
+            <div class="dashboard__info-box">
                 <img src="images/refresh.svg" alt="refresh" loading="lazy">
-                <div class="info-data-box">
-                    <p class="info-bold-text">0 Refresh Required</p>
-                    <p class="info-text-success">All synced</p>
+                <div class="dashboard__info">
+                    <p class="dashboard__info-title">0 Refresh Required</p>
+                    <p class="dashboard__info-text-success">All synced</p>
                 </div>
             </div>
         </section>
 
         <section class="caching">
-            <div class="caching-top">
-                <div class="caching-tabs-wrapper">
-                    <div class="caching-tabs" id="cacheTabs">
-                        <button class="cache-tab active" type="button" data-tab="served">Served by</button>
-                        <button class="cache-tab" type="button" data-tab="cache-status">Cache status</button>
-                        <button class="cache-tab" type="button" data-tab="country">Country</button>
-                        <button class="cache-tab" type="button" data-tab="host">Host</button>
+            <div class="caching__top">
+                <div class="caching__tabs-wrapper">
+                    <div class="caching__tabs" id="cacheTabs">
+                        <button class="caching__tab active" type="button" data-tab="served">Served by</button>
+                        <button class="caching__tab" type="button" data-tab="cache-status">Cache status</button>
+                        <button class="caching__tab" type="button" data-tab="country">Country</button>
+                        <button class="caching__tab" type="button" data-tab="host">Host</button>
                     </div>
 
-                    <div class="cache-more">
-                        <button class="cache-more-btn" id="cacheMoreBtn" type="button" aria-haspopup="menu"
+                    <div class="caching__more">
+                        <button class="caching__more-btn" id="cacheMoreBtn" type="button" aria-haspopup="menu"
                             aria-expanded="false" aria-controls="cacheMoreMenu" aria-label="More cache tabs"
                             data-label-open="Open more cache tabs" data-label-close="Close more cache tabs">···</button>
                         <div class="cache-more-menu dropdown dropdown--compact" id="cacheMoreMenu" role="menu" aria-label="More cache tabs">
-                            <button class="menu-item" type="button" role="menuitem" data-tab="status-code">Status
+                            <button class="dropdown__item" type="button" role="menuitem" data-tab="status-code">Status
                                 Code</button>
-                            <button class="menu-item" type="button" role="menuitem" data-tab="device">Device</button>
+                            <button class="dropdown__item" type="button" role="menuitem" data-tab="device">Device</button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="cache-panel" id="cachePanel"></div>
+            <div class="caching__panel" id="cachePanel">
+                <div class="caching__stats-row">
+                    <div class="caching__stat">
+                        <p class="caching__stat-title">Total</p>
+                        <p class="caching__stat-value" id="cacheTotalValue">0</p>
+                    </div>
+
+                    <div class="caching__stat">
+                        <p class="caching__stat-title">
+                            <span class="dot dot--lightblue"></span> Served by origin
+                        </p>
+                        <p class="caching__stat-value" id="cacheOriginValue">0</p>
+                    </div>
+
+                    <div class="caching__stat">
+                        <p class="caching__stat-title">
+                            <span class="dot dot--blue"></span> Served by Trafficmind
+                        </p>
+                        <p class="caching__stat-value" id="cacheTmValue">0</p>
+                    </div>
+                </div>
+
+                <div class="caching__chart-box">
+                    <canvas id="cachingChart"></canvas>
+                </div>
+            </div>
         </section>
     </main>
     <script src="js/configs.js"></script>
