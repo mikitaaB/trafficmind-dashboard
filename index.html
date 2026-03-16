@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TRAFFICmind Dashboard</title>
-    <link rel="stylesheet" href="css/base/_reset.css">
-    <link rel="stylesheet" href="css/base/_variables.css">
+    <link rel="stylesheet" href="css/base/reset.css">
+    <link rel="stylesheet" href="css/base/variables.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/utils/_responsive.css">
+    <link rel="stylesheet" href="css/utils/responsive.css">
     <script src="lib/chart.umd.min.js"></script>
 </head>
 
@@ -20,28 +20,34 @@
             </a>
 
             <div class="profile-wrapper">
-                <img src="images/profile.svg" alt="profile logo" loading="lazy" id="profileBtn">
+                <button class="icon-btn" type="button" id="profileBtn" aria-haspopup="menu" aria-expanded="false"
+                    aria-controls="profileMenu" aria-label="Open profile menu" data-label-open="Open profile menu"
+                    data-label-close="Close profile menu">
+                    <img src="images/profile.svg" alt="Open profile menu" loading="lazy">
+                </button>
 
-                <div class="profile-menu" id="profileMenu">
-                    <p>Profile</p>
-                    <p>Settings</p>
-                    <p>Logout</p>
+                <div class="profile-menu dropdown dropdown--panel" id="profileMenu" role="menu" aria-label="Profile menu">
+                    <button class="menu-item" type="button" role="menuitem">Profile</button>
+                    <button class="menu-item" type="button" role="menuitem">Settings</button>
+                    <button class="menu-item" type="button" role="menuitem">Logout</button>
                 </div>
             </div>
         </div>
         <div class="right-header">
             <span>STATISTICS</span>
 
-            <button class="menu-btn" id="menuBtn">
+            <button class="menu-btn" id="menuBtn" type="button" aria-haspopup="menu" aria-expanded="false"
+                aria-controls="menuDropdown" aria-label="Open main menu" data-label-open="Open main menu"
+                data-label-close="Close main menu">
                 <span class="line"></span>
                 <span class="line"></span>
                 <span class="line"></span>
             </button>
 
-            <div class="menu-dropdown" id="menuDropdown">
-                <p>Dashboard</p>
-                <p>Analytics</p>
-                <p>Reports</p>
+            <div class="menu-dropdown dropdown dropdown--panel" id="menuDropdown" role="menu" aria-label="Main menu">
+                <button class="menu-item" type="button" role="menuitem">Dashboard</button>
+                <button class="menu-item" type="button" role="menuitem">Analytics</button>
+                <button class="menu-item" type="button" role="menuitem">Reports</button>
             </div>
         </div>
     </header>
@@ -109,17 +115,20 @@
             <div class="caching-top">
                 <div class="caching-tabs-wrapper">
                     <div class="caching-tabs" id="cacheTabs">
-                        <button class="cache-tab active" data-tab="served">Served by</button>
-                        <button class="cache-tab" data-tab="cache-status">Cache status</button>
-                        <button class="cache-tab" data-tab="country">Country</button>
-                        <button class="cache-tab" data-tab="host">Host</button>
+                        <button class="cache-tab active" type="button" data-tab="served">Served by</button>
+                        <button class="cache-tab" type="button" data-tab="cache-status">Cache status</button>
+                        <button class="cache-tab" type="button" data-tab="country">Country</button>
+                        <button class="cache-tab" type="button" data-tab="host">Host</button>
                     </div>
 
                     <div class="cache-more">
-                        <button class="cache-more-btn" id="cacheMoreBtn">···</button>
-                        <div class="cache-more-menu" id="cacheMoreMenu">
-                            <p data-tab="status-code">Status Code</p>
-                            <p data-tab="device">Device</p>
+                        <button class="cache-more-btn" id="cacheMoreBtn" type="button" aria-haspopup="menu"
+                            aria-expanded="false" aria-controls="cacheMoreMenu" aria-label="More cache tabs"
+                            data-label-open="Open more cache tabs" data-label-close="Close more cache tabs">···</button>
+                        <div class="cache-more-menu dropdown dropdown--compact" id="cacheMoreMenu" role="menu" aria-label="More cache tabs">
+                            <button class="menu-item" type="button" role="menuitem" data-tab="status-code">Status
+                                Code</button>
+                            <button class="menu-item" type="button" role="menuitem" data-tab="device">Device</button>
                         </div>
                     </div>
                 </div>

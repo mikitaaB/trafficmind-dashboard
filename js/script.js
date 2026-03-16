@@ -2,35 +2,76 @@ const menuBtn = document.getElementById('menuBtn');
 const menuDropdown = document.getElementById('menuDropdown');
 const profileBtn = document.getElementById('profileBtn');
 const profileMenu = document.getElementById('profileMenu');
+const cacheMoreBtn = document.getElementById("cacheMoreBtn");
+const cacheMoreMenu = document.getElementById("cacheMoreMenu");
+
+function closeMenu(triggerEl, menuEl, { deactivateTrigger = false, focusTrigger = false } = {}) {
+    if (!triggerEl || !menuEl) return;
+    menuEl.classList.remove("open");
+    if (deactivateTrigger) triggerEl.classList.remove("active");
+    triggerEl.setAttribute("aria-expanded", "false");
+    if (triggerEl.dataset?.labelOpen) triggerEl.setAttribute("aria-label", triggerEl.dataset.labelOpen);
+    if (focusTrigger) triggerEl.focus();
+}
+
+function openMenu(triggerEl, menuEl) {
+    if (!triggerEl || !menuEl) return;
+    menuEl.classList.add("open");
+    triggerEl.setAttribute("aria-expanded", "true");
+    if (triggerEl.dataset?.labelClose) triggerEl.setAttribute("aria-label", triggerEl.dataset.labelClose);
+}
 
 menuBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     menuBtn.classList.toggle('active');
-    menuDropdown.classList.toggle('open');
+    const willOpen = !menuDropdown.classList.contains("open");
+    if (willOpen) openMenu(menuBtn, menuDropdown);
+    else closeMenu(menuBtn, menuDropdown, { deactivateTrigger: true });
 });
 
 profileBtn.addEventListener('click', (e) => {
     e.stopPropagation();
-    profileMenu.classList.toggle('open');
+    const willOpen = !profileMenu.classList.contains("open");
+    if (willOpen) openMenu(profileBtn, profileMenu);
+    else closeMenu(profileBtn, profileMenu);
 });
 
 document.addEventListener('click', (e) => {
     if (!menuDropdown.contains(e.target) && !menuBtn.contains(e.target)) {
-        menuDropdown.classList.remove('open');
-        menuBtn.classList.remove('active');
+        closeMenu(menuBtn, menuDropdown, { deactivateTrigger: true });
     }
 
     if (!profileMenu.contains(e.target) && !profileBtn.contains(e.target)) {
-        profileMenu.classList.remove('open');
+        closeMenu(profileBtn, profileMenu);
+    }
+
+    if (!cacheMoreBtn.contains(e.target) && !cacheMoreMenu.contains(e.target)) {
+        closeMenu(cacheMoreBtn, cacheMoreMenu);
     }
 });
 
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-        menuDropdown.classList.remove('open');
-        profileMenu.classList.remove('open');
-        menuBtn.classList.remove('active');
+        const wasMenuOpen = menuDropdown.classList.contains("open");
+        const wasProfileOpen = profileMenu.classList.contains("open");
+        const wasCacheMoreOpen = cacheMoreMenu?.classList.contains("open");
+
+        closeMenu(menuBtn, menuDropdown, { deactivateTrigger: true, focusTrigger: wasMenuOpen });
+        closeMenu(profileBtn, profileMenu, { focusTrigger: !wasMenuOpen && wasProfileOpen });
+        closeMenu(cacheMoreBtn, cacheMoreMenu, { focusTrigger: !wasMenuOpen && !wasProfileOpen && wasCacheMoreOpen });
     }
+});
+
+menuDropdown.querySelectorAll(".menu-item").forEach((item) => {
+    item.addEventListener("click", () => {
+        closeMenu(menuBtn, menuDropdown, { deactivateTrigger: true, focusTrigger: true });
+    });
+});
+
+profileMenu.querySelectorAll(".menu-item").forEach((item) => {
+    item.addEventListener("click", () => {
+        closeMenu(profileBtn, profileMenu, { focusTrigger: true });
+    });
 });
 
 
@@ -63,28 +104,21 @@ new Chart(document.getElementById('transferChart'), {
 });
 
 const cacheTabs = document.querySelectorAll(".cache-tab");
-const cacheMoreBtn = document.getElementById("cacheMoreBtn");
-const cacheMoreMenu = document.getElementById("cacheMoreMenu");
 const cachePanel = document.getElementById("cachePanel");
 
 const cacheTabsData = CONFIG.cacheData;
 
 cacheMoreBtn.addEventListener("click", (e) => {
     e.stopPropagation();
-    cacheMoreMenu.style.display =
-        cacheMoreMenu.style.display === "block" ? "none" : "block";
+    const willOpen = !cacheMoreMenu.classList.contains("open");
+    if (willOpen) openMenu(cacheMoreBtn, cacheMoreMenu);
+    else closeMenu(cacheMoreBtn, cacheMoreMenu);
 });
 
-document.addEventListener("click", (e) => {
-    if (!cacheMoreBtn.contains(e.target) && !cacheMoreMenu.contains(e.target)) {
-        cacheMoreMenu.style.display = "none";
-    }
-});
-
-cacheMoreMenu.querySelectorAll("p").forEach(item => {
+cacheMoreMenu.querySelectorAll("button").forEach(item => {
     item.addEventListener("click", () => {
         activateCacheTab(item.dataset.tab);
-        cacheMoreMenu.style.display = "none";
+        closeMenu(cacheMoreBtn, cacheMoreMenu, { focusTrigger: true });
     });
 });
 
@@ -96,13 +130,13 @@ cacheTabs.forEach(tab => {
 
 function activateCacheTab(name) {
     cacheTabs.forEach(t => t.classList.remove("active"));
-    cacheMoreMenu.querySelectorAll("p").forEach(p => p.classList.remove("active"));
+    cacheMoreMenu.querySelectorAll("button").forEach(p => p.classList.remove("active"));
 
     const mainTab = [...cacheTabs].find(t => t.dataset.tab === name);
     if (mainTab) {
         mainTab.classList.add("active");
     } else {
-        const menuItem = [...cacheMoreMenu.querySelectorAll("p")].find(p => p.dataset.tab === name);
+        const menuItem = [...cacheMoreMenu.querySelectorAll("button")].find(p => p.dataset.tab === name);
         if (menuItem) menuItem.classList.add("active");
     }
 
