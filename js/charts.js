@@ -121,7 +121,7 @@ function drawCachingChart(canvas, originData, tmData) {
     ctx.stroke();
 
     ctx.fillStyle = "#666";
-    ctx.font = "11px system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+    ctx.font = "11px 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
     ctx.textAlign = "right";
     ctx.textBaseline = "middle";
 
