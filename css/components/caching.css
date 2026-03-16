@@ -110,7 +110,13 @@
 
 .cache-chart-box {
     height: 300px;
-    padding: var(--spacing-xl) var(--spacing-xs) var(--spacing-xs);
+    width: 100%;
+    padding: var(--spacing-xl) var(--spacing-xl);
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
 }
 
 .cache-empty {

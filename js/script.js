@@ -74,35 +74,6 @@ profileMenu.querySelectorAll(".menu-item").forEach((item) => {
     });
 });
 
-
-new Chart(document.getElementById('requestsChart'), {
-    type: 'line',
-    data: {
-        labels: CONFIG.trafficRequestsData.map(() => ""),
-        datasets: [{
-            data: CONFIG.trafficRequestsData,
-            borderColor: CONFIG.trafficChartBorderColor,
-            backgroundColor: CONFIG.chartBackgroundColor,
-            fill: true
-        }]
-    },
-    options: CONFIG.trafficChartOptions
-});
-
-new Chart(document.getElementById('transferChart'), {
-    type: 'line',
-    data: {
-        labels: CONFIG.trafficTransferData.map(() => ""),
-        datasets: [{
-            data: CONFIG.trafficTransferData,
-            borderColor: CONFIG.trafficChartBorderColor,
-            backgroundColor: CONFIG.chartBackgroundColor,
-            fill: true
-        }]
-    },
-    options: CONFIG.trafficChartOptions
-});
-
 const cacheTabs = document.querySelectorAll(".cache-tab");
 const cachePanel = document.getElementById("cachePanel");
 
@@ -184,36 +155,11 @@ function renderCachePanel(name) {
     renderCachingChart(data.originChart, data.tmChart);
 }
 
-function renderCachingChart(originData, tmData) {
-    const ctx = document.getElementById("cachingChart");
-    if (!ctx) return;
-
-    new Chart(ctx, {
-        type: "line",
-        data: {
-            datasets: [
-                {
-                    label: "Served by origin",
-                    data: originData,
-                    borderColor: CONFIG.cacheOriginBorderColor,
-                    backgroundColor: CONFIG.cacheChartBackgroundColor,
-                    fill: true,
-                    tension: 0.4,
-                    pointRadius: 0
-                },
-                {
-                    label: "Served by Trafficmind",
-                    data: tmData,
-                    borderColor: CONFIG.cacheTrafficmindBorderColor,
-                    backgroundColor: CONFIG.cacheChartBackgroundColor,
-                    fill: false,
-                    tension: 0.4,
-                    pointRadius: 0
-                }
-            ]
-        },
-        options: CONFIG.cacheChartOptions
-    });
-}
-
+renderTrafficCharts();
 renderCachePanel("served");
+
+window.addEventListener("resize", () => {
+    renderTrafficCharts();
+    const activeTab = document.querySelector(".cache-tab.active")?.dataset.tab || "served";
+    renderCachePanel(activeTab);
+});
