@@ -8,37 +8,51 @@ const cacheMoreMenu = document.getElementById("cacheMoreMenu");
 function closeMenu(triggerEl, menuEl, { deactivateTrigger = false, focusTrigger = false } = {}) {
     if (!triggerEl || !menuEl) return;
     menuEl.classList.remove("open");
-    if (deactivateTrigger) triggerEl.classList.remove("active");
+    if (deactivateTrigger) {
+        triggerEl.classList.remove("active");
+    }
     triggerEl.setAttribute("aria-expanded", "false");
-    if (triggerEl.dataset?.labelOpen) triggerEl.setAttribute("aria-label", triggerEl.dataset.labelOpen);
-    if (focusTrigger) triggerEl.focus();
+    if (triggerEl.dataset?.labelOpen) {
+        triggerEl.setAttribute("aria-label", triggerEl.dataset.labelOpen);
+    }
+    if (focusTrigger) {
+        triggerEl.focus();
+    }
 }
 
 function openMenu(triggerEl, menuEl) {
     if (!triggerEl || !menuEl) return;
     menuEl.classList.add("open");
     triggerEl.setAttribute("aria-expanded", "true");
-    if (triggerEl.dataset?.labelClose) triggerEl.setAttribute("aria-label", triggerEl.dataset.labelClose);
+    if (triggerEl.dataset?.labelClose) {
+        triggerEl.setAttribute("aria-label", triggerEl.dataset.labelClose);
+    }
 }
 
 menuBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     menuBtn.classList.toggle('active');
-    const willOpen = !menuDropdown.classList.contains("open");
-    if (willOpen) openMenu(menuBtn, menuDropdown);
-    else closeMenu(menuBtn, menuDropdown, { deactivateTrigger: true });
+    const isMenuOpen = !menuDropdown.classList.contains("open");
+    isMenuOpen
+        ? openMenu(menuBtn, menuDropdown)
+        : closeMenu(menuBtn, menuDropdown, {
+            deactivateTrigger: true
+        });
 });
 
 profileBtn.addEventListener('click', (e) => {
     e.stopPropagation();
-    const willOpen = !profileMenu.classList.contains("open");
-    if (willOpen) openMenu(profileBtn, profileMenu);
-    else closeMenu(profileBtn, profileMenu);
+    const isProfileMenuOpen = !profileMenu.classList.contains("open");
+    isProfileMenuOpen
+        ? openMenu(profileBtn, profileMenu)
+        : closeMenu(profileBtn, profileMenu);
 });
 
 document.addEventListener('click', (e) => {
     if (!menuDropdown.contains(e.target) && !menuBtn.contains(e.target)) {
-        closeMenu(menuBtn, menuDropdown, { deactivateTrigger: true });
+        closeMenu(menuBtn, menuDropdown, {
+            deactivateTrigger: true
+        });
     }
 
     if (!profileMenu.contains(e.target) && !profileBtn.contains(e.target)) {
@@ -52,25 +66,38 @@ document.addEventListener('click', (e) => {
 
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-        const wasMenuOpen = menuDropdown.classList.contains("open");
-        const wasProfileOpen = profileMenu.classList.contains("open");
-        const wasCacheMoreOpen = cacheMoreMenu?.classList.contains("open");
+        const isMenuOpen = menuDropdown.classList.contains("open");
+        const isProfileMenuOpen = profileMenu.classList.contains("open");
+        const isCacheMoreOpen = cacheMoreMenu?.classList.contains("open");
 
-        closeMenu(menuBtn, menuDropdown, { deactivateTrigger: true, focusTrigger: wasMenuOpen });
-        closeMenu(profileBtn, profileMenu, { focusTrigger: !wasMenuOpen && wasProfileOpen });
-        closeMenu(cacheMoreBtn, cacheMoreMenu, { focusTrigger: !wasMenuOpen && !wasProfileOpen && wasCacheMoreOpen });
+        closeMenu(menuBtn, menuDropdown, {
+            deactivateTrigger: true,
+            focusTrigger: isMenuOpen
+        }
+        );
+        closeMenu(profileBtn, profileMenu, {
+            focusTrigger: !isMenuOpen && isProfileMenuOpen
+        });
+        closeMenu(cacheMoreBtn, cacheMoreMenu, {
+            focusTrigger: !isMenuOpen && !isProfileMenuOpen && isCacheMoreOpen
+        });
     }
 });
 
-menuDropdown.querySelectorAll(".dropdown__item").forEach((item) => {
+menuDropdown.querySelectorAll(".dropdown__item").forEach(item => {
     item.addEventListener("click", () => {
-        closeMenu(menuBtn, menuDropdown, { deactivateTrigger: true, focusTrigger: true });
+        closeMenu(menuBtn, menuDropdown, {
+            deactivateTrigger: true,
+            focusTrigger: true
+        });
     });
 });
 
-profileMenu.querySelectorAll(".dropdown__item").forEach((item) => {
+profileMenu.querySelectorAll(".dropdown__item").forEach(item => {
     item.addEventListener("click", () => {
-        closeMenu(profileBtn, profileMenu, { focusTrigger: true });
+        closeMenu(profileBtn, profileMenu, {
+            focusTrigger: true
+        });
     });
 });
 
@@ -84,15 +111,18 @@ const cacheTabsData = CONFIG.cacheData;
 
 cacheMoreBtn.addEventListener("click", (e) => {
     e.stopPropagation();
-    const willOpen = !cacheMoreMenu.classList.contains("open");
-    if (willOpen) openMenu(cacheMoreBtn, cacheMoreMenu);
-    else closeMenu(cacheMoreBtn, cacheMoreMenu);
+    const isCacheMenuOpen = !cacheMoreMenu.classList.contains("open");
+    isCacheMenuOpen
+        ? openMenu(cacheMoreBtn, cacheMoreMenu)
+        : closeMenu(cacheMoreBtn, cacheMoreMenu);
 });
 
 cacheMoreMenu.querySelectorAll("button").forEach(item => {
     item.addEventListener("click", () => {
         activateCacheTab(item.dataset.tab);
-        closeMenu(cacheMoreBtn, cacheMoreMenu, { focusTrigger: true });
+        closeMenu(cacheMoreBtn, cacheMoreMenu, {
+            focusTrigger: true
+        });
     });
 });
 
@@ -104,14 +134,16 @@ cacheTabs.forEach(tab => {
 
 function activateCacheTab(name) {
     cacheTabs.forEach(t => t.classList.remove("active"));
-    cacheMoreMenu.querySelectorAll("button").forEach(p => p.classList.remove("active"));
+    cacheMoreMenu.querySelectorAll("button").forEach(btn => btn.classList.remove("active"));
 
-    const mainTab = [...cacheTabs].find(t => t.dataset.tab === name);
+    const mainTab = [...cacheTabs].find(tab => tab.dataset.tab === name);
     if (mainTab) {
         mainTab.classList.add("active");
     } else {
-        const menuItem = [...cacheMoreMenu.querySelectorAll("button")].find(p => p.dataset.tab === name);
-        if (menuItem) menuItem.classList.add("active");
+        const menuItem = [...cacheMoreMenu.querySelectorAll("button")].find(btn => btn.dataset.tab === name);
+        if (menuItem) {
+            menuItem.classList.add("active");
+        }
     }
 
     renderCachePanel(name);
@@ -119,21 +151,26 @@ function activateCacheTab(name) {
 
 function renderCachePanel(name) {
     cachePanel.classList.add("active");
-
     const data = cacheTabsData[name];
+    const {
+        total = "0",
+        origin = "0",
+        tm = "0",
+        originChart = [],
+        tmChart = [],
+    } = data ?? {};
 
-    const total = data?.total ?? "0";
-    const origin = data?.origin ?? "0";
-    const tm = data?.tm ?? "0";
-
-    if (cacheTotalValueEl) cacheTotalValueEl.textContent = total;
-    if (cacheOriginValueEl) cacheOriginValueEl.textContent = origin;
-    if (cacheTmValueEl) cacheTmValueEl.textContent = tm;
-
-    const originChart = data?.originChart ?? [];
-    const tmChart = data?.tmChart ?? [];
+    updateCacheValue(cacheTotalValueEl, total);
+    updateCacheValue(cacheOriginValueEl, origin);
+    updateCacheValue(cacheTmValueEl, tm);
 
     renderCachingChart(originChart, tmChart);
+}
+
+function updateCacheValue(element, value) {
+    if (element) {
+        element.textContent = value;
+    }
 }
 
 renderTrafficCharts();

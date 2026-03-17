@@ -1,16 +1,16 @@
 const CONFIG = {
-    trafficRequestsData: [2, 3, 4, 6, 10, 25, 8, 6, 5, 4, 4, 4, 4, 4, 4, 4],
-    trafficTransferData: [2, 3, 4, 6, 4, 5, 7, 6, 5, 4, 4, 4, 4, 4, 4, 4],
-    trafficChartBorderColor: "#4A90E2",
-    chartBackgroundColor: "#2d76fb14",
-    cacheOriginBorderColor: "#2d76fb",
-    cacheTrafficmindBorderColor: "#0040e3",
-    cacheData: {
+    "trafficRequestsData": [2, 3, 4, 6, 10, 25, 8, 6, 5, 4, 4, 4, 4, 4, 4, 4],
+    "trafficTransferData": [2, 3, 4, 6, 4, 5, 7, 6, 5, 4, 4, 4, 4, 4, 4, 4],
+    "trafficChartBorderColor": "#4A90E2",
+    "chartBackgroundColor": "#2d76fb14",
+    "cacheOriginBorderColor": "#2d76fb",
+    "cacheTrafficmindBorderColor": "#0040e3",
+    "cacheData": {
         "served": {
             "total": "4.21M",
             "tm": "18.76K",
             "origin": "4.19M",
-            originChart: [
+            "originChart": [
                 { x: "1:00", y: 120 },
                 { x: "2:00", y: 140 },
                 { x: "3:00", y: 160 },
@@ -30,7 +30,7 @@ const CONFIG = {
                 { x: "17:00", y: 110 },
                 { x: "18:00", y: 90 }
             ],
-            tmChart: [
+            "tmChart": [
                 { x: "1:00", y: 5 },
                 { x: "2:00", y: 8 },
                 { x: "3:00", y: 10 },
