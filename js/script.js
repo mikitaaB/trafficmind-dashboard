@@ -1,7 +1,7 @@
-const menuBtn = document.getElementById('menuBtn');
-const menuDropdown = document.getElementById('menuDropdown');
-const profileBtn = document.getElementById('profileBtn');
-const profileMenu = document.getElementById('profileMenu');
+const menuBtn = document.getElementById("menuBtn");
+const menuDropdown = document.getElementById("menuDropdown");
+const profileBtn = document.getElementById("profileBtn");
+const profileMenu = document.getElementById("profileMenu");
 const cacheMoreBtn = document.getElementById("cacheMoreBtn");
 const cacheMoreMenu = document.getElementById("cacheMoreMenu");
 
@@ -29,9 +29,9 @@ function openMenu(triggerEl, menuEl) {
     }
 }
 
-menuBtn.addEventListener('click', (e) => {
+menuBtn.addEventListener("click", (e) => {
     e.stopPropagation();
-    menuBtn.classList.toggle('active');
+    menuBtn.classList.toggle("active");
     const isMenuOpen = !menuDropdown.classList.contains("open");
     isMenuOpen
         ? openMenu(menuBtn, menuDropdown)
@@ -40,7 +40,7 @@ menuBtn.addEventListener('click', (e) => {
         });
 });
 
-profileBtn.addEventListener('click', (e) => {
+profileBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     const isProfileMenuOpen = !profileMenu.classList.contains("open");
     isProfileMenuOpen
@@ -48,7 +48,7 @@ profileBtn.addEventListener('click', (e) => {
         : closeMenu(profileBtn, profileMenu);
 });
 
-document.addEventListener('click', (e) => {
+document.addEventListener("click", (e) => {
     if (!menuDropdown.contains(e.target) && !menuBtn.contains(e.target)) {
         closeMenu(menuBtn, menuDropdown, {
             deactivateTrigger: true
@@ -64,8 +64,8 @@ document.addEventListener('click', (e) => {
     }
 });
 
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
         const isMenuOpen = menuDropdown.classList.contains("open");
         const isProfileMenuOpen = profileMenu.classList.contains("open");
         const isCacheMoreOpen = cacheMoreMenu?.classList.contains("open");

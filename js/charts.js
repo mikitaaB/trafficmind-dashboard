@@ -41,8 +41,8 @@ function drawMiniAreaChart(canvas, data, options) {
     ctx.closePath();
 
     const gradient = ctx.createLinearGradient(0, padding, 0, height - padding);
-    gradient.addColorStop(0, options.fillColor || "#0000000F");
-    gradient.addColorStop(1, "#00000000");
+    gradient.addColorStop(0, options.fillColor || CONFIG.colors.semiTransparentBlack);
+    gradient.addColorStop(1, CONFIG.colors.transparentBlack);
 
     ctx.fillStyle = gradient;
     ctx.fill();
@@ -57,9 +57,9 @@ function drawMiniAreaChart(canvas, data, options) {
     ctx.stroke();
 }
 
-function drawNoData({ctx, width, height}) {
+function drawNoData({ ctx, width, height }) {
     ctx.clearRect(0, 0, width, height);
-    ctx.fillStyle = "#333";
+    ctx.fillStyle = CONFIG.colors.textDarkColor;
     ctx.font = "20px 'Roboto', system-ui, sans-serif";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
@@ -97,7 +97,7 @@ function drawCachingChart(canvas, originData, tmData) {
     }
 
     const gridLines = 4;
-    ctx.strokeStyle = "#00000014";
+    ctx.strokeStyle = CONFIG.colors.semiTransparentBlackLight;
     ctx.lineWidth = 1;
     for (let i = 0; i <= gridLines; i++) {
         const t = i / gridLines;
@@ -114,13 +114,18 @@ function drawCachingChart(canvas, originData, tmData) {
     originPoints.forEach(p => ctx.lineTo(p.x, p.y));
     ctx.lineTo(originPoints[originPoints.length - 1].x, height - paddingBottom);
     ctx.closePath();
-    ctx.fillStyle = CONFIG.chartBackgroundColor;
+
+    const originGradient = ctx.createLinearGradient(0, paddingTop, 0, height - paddingBottom);
+    originGradient.addColorStop(0, CONFIG.colors.chartBackgroundColor || CONFIG.colors.semiTransparentBlack);
+    originGradient.addColorStop(1, CONFIG.colors.transparentBlack);
+
+    ctx.fillStyle = originGradient;
     ctx.fill();
 
     ctx.beginPath();
     ctx.moveTo(originPoints[0].x, originPoints[0].y);
     originPoints.slice(1).forEach(p => ctx.lineTo(p.x, p.y));
-    ctx.strokeStyle = CONFIG.cacheOriginBorderColor;
+    ctx.strokeStyle = CONFIG.colors.cacheOriginBorderColor;
     ctx.lineWidth = 2;
     ctx.lineJoin = "round";
     ctx.lineCap = "round";
@@ -130,13 +135,13 @@ function drawCachingChart(canvas, originData, tmData) {
     ctx.beginPath();
     ctx.moveTo(tmPoints[0].x, tmPoints[0].y);
     tmPoints.slice(1).forEach(p => ctx.lineTo(p.x, p.y));
-    ctx.strokeStyle = CONFIG.cacheTrafficmindBorderColor;
+    ctx.strokeStyle = CONFIG.colors.cacheTrafficmindBorderColor;
     ctx.lineWidth = 2;
     ctx.lineJoin = "round";
     ctx.lineCap = "round";
     ctx.stroke();
 
-    ctx.fillStyle = "#666";
+    ctx.fillStyle = CONFIG.colors.textMediumGray;
     ctx.font = "11px 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
     ctx.textAlign = "right";
     ctx.textBaseline = "middle";
@@ -163,15 +168,15 @@ function renderTrafficCharts() {
 
     if (requestsCanvas) {
         drawMiniAreaChart(requestsCanvas, CONFIG.trafficRequestsData, {
-            lineColor: CONFIG.trafficChartBorderColor,
-            fillColor: CONFIG.chartBackgroundColor
+            lineColor: CONFIG.colors.trafficChartBorderColor,
+            fillColor: CONFIG.colors.chartBackgroundColor
         });
     }
 
     if (transferCanvas) {
         drawMiniAreaChart(transferCanvas, CONFIG.trafficTransferData, {
-            lineColor: CONFIG.trafficChartBorderColor,
-            fillColor: CONFIG.chartBackgroundColor
+            lineColor: CONFIG.colors.trafficChartBorderColor,
+            fillColor: CONFIG.colors.chartBackgroundColor
         });
     }
 }

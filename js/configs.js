@@ -1,10 +1,17 @@
 const CONFIG = {
     "trafficRequestsData": [2, 3, 4, 6, 10, 25, 8, 6, 5, 4, 4, 4, 4, 4, 4, 4],
     "trafficTransferData": [2, 3, 4, 6, 4, 5, 7, 6, 5, 4, 4, 4, 4, 4, 4, 4],
-    "trafficChartBorderColor": "#4A90E2",
-    "chartBackgroundColor": "#2d76fb14",
-    "cacheOriginBorderColor": "#2d76fb",
-    "cacheTrafficmindBorderColor": "#0040e3",
+    "colors": {
+        "trafficChartBorderColor": "#4A90E2",
+        "chartBackgroundColor": "#2d76fb14",
+        "cacheOriginBorderColor": "#2d76fb",
+        "cacheTrafficmindBorderColor": "#0040e3",
+        "textDarkColor": "#333",
+        "semiTransparentBlackLight": "#00000014",
+        "semiTransparentBlack": "#0000000F",
+        "transparentBlack": "#00000000",
+        "textMediumGray": "#666",
+    },
     "cacheData": {
         "served": {
             "total": "4.21M",
