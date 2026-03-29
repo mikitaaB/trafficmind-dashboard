@@ -39,6 +39,9 @@
     cursor: pointer;
     font-size: 13px;
     white-space: nowrap;
+    font-family: inherit;
+    font-weight: inherit;
+    line-height: inherit;
 }
 
 .caching__tab.active {
