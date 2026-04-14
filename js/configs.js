@@ -1,3 +1,5 @@
+'use strict';
+
 const CONFIG = {
     "trafficRequestsData": [2, 3, 4, 6, 10, 25, 8, 6, 5, 4, 4, 4, 4, 4, 4, 4],
     "trafficTransferData": [2, 3, 4, 6, 4, 5, 7, 6, 5, 4, 4, 4, 4, 4, 4, 4],

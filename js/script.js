@@ -1,3 +1,5 @@
+'use strict';
+
 const menuBtn = document.getElementById("menuBtn");
 const menuDropdown = document.getElementById("menuDropdown");
 const profileBtn = document.getElementById("profileBtn");

@@ -1,3 +1,5 @@
+'use strict';
+
 function setupCanvas(canvas) {
     if (!canvas) return null;
     const dpr = window.devicePixelRatio || 1;
